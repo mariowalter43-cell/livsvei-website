@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Ergebnis – Pfad der Dualität</title>
+
+<style>
+    /* Grundlayout */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #ffffff;
+        color: #222;
+        text-align: center;
+        line-height: 1.6;
+
+        min-height: 100vh;      /* Seite füllt immer den Bildschirm */
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* LIVSVEI HEADER */
+    header {
+        background: #000;
+        padding: 1.5rem 2rem;
+        border-bottom: 2px solid #C8A951;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    header h1 {
+        color: #C8A951;
+        font-size: 1.6rem;
+        font-weight: 500;
+        margin: 0;
+        letter-spacing: 0.05em;
+    }
+
+    header .startlink {
+        color: #C8A951;
+        text-decoration: none;
+        font-size: 1rem;
+        border: 1px solid #C8A951;
+        padding: 0.4rem 0.8rem;
+        border-radius: 4px;
+        transition: 0.2s;
+    }
+
+    header .startlink:hover {
+        background: #C8A951;
+        color: #000;
+    }
+
+    /* Frage */
+    #frageAnzeige {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-top: 2rem;
+        color: #000;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Karten */
+    .karten-container {
+        margin-top: 2.5rem;
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .karte-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 180px;
+    }
+
+    .karte {
+        width: 180px;
+        height: 260px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 8px;
+        border: 6px solid transparent;
+    }
+
+    .Licht {
+        border: 6px solid white;
+        box-shadow: 0 0 0 3px black;
+    }
+
+    .Schatten {
+        border: 6px solid black;
+        box-shadow: 0 0 10px rgba(0,0,0,0.8);
+    }
+
+    .karten-name {
+        margin-top: 0.6rem;
+        font-size: 1rem;
+        font-weight: 500;
+        text-transform: capitalize;
+    }
+
+    /* Ergebnis */
+    .ergebnis-kategorie {
+        font-size: 1.8rem;
+        margin-top: 2rem;
+        font-weight: 600;
+        color: #000;
+    }
+
+    .ergebnis-text {
+        max-width: 700px;
+        margin: 2rem auto;
+        font-size: 1.3rem;
+        padding: 0 1rem;
+    }
+
+    /* LIVSVEI FOOTER */
+    footer {
+        margin-top: auto;       /* Footer bleibt unten */
+        padding: 1.5rem;
+        background: #000;
+        border-top: 2px solid #C8A951;
+        color: #fff;
+        font-size: 0.9rem;
+    }
+
+    footer a {
+        color: #C8A951;
+        text-decoration: none;
+        margin: 0 0.5rem;
+    }
+
+    footer a:hover {
+        text-decoration: underline;
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Dein Weg‑Impuls</h1>
+    <a href="../index.html" class="startlink">Startseite</a>
+</header>
+
+<div id="frageAnzeige"></div>
+
+<div class="karten-container" id="kartenAnzeige"></div>
+
+<div class="ergebnis-kategorie" id="kategorie"></div>
+<div class="ergebnis-text" id="ergebnisText"></div>
+
+<footer>
+    <a href="../index.html">Startseite</a> |
+    <a href="../tempel/impressum.html">Impressum & Kontakt</a> |
+    <a href="../tempel/datenschutz.html">Datenschutz</a>
+    <div style="margin-top: 0.5rem;">© 2026 LIVSVEI</div>
+</footer>
+
+<script>
+// ------------------------------------------------------------
+// Frage aus dem Ritual laden
+// ------------------------------------------------------------
+let frage = localStorage.getItem("od_frage") || "Keine Frage ausgewählt";
+document.getElementById("frageAnzeige").innerText = frage;
+
+// ------------------------------------------------------------
+// INLINE TEXTBAUSTEINE
+// ------------------------------------------------------------
+let satzPools = {
+    "JA": {
+        "Satz1": [
+            "Der Weg öffnet sich klar.",
+            "Eine deutliche Zustimmung liegt im Feld.",
+            "Die Richtung zeigt sich offen und bereit."
+        ],
+        "Satz2": [
+            "Die Energie trägt dich spürbar nach vorn.",
+            "Etwas in dir und im Weg schwingt im Einklang.",
+            "Die Bewegung wirkt leicht und stimmig."
+        ],
+        "Satz3": [
+            "Du darfst diesen Impuls annehmen.",
+            "Der nächste Schritt liegt frei vor dir.",
+            "Eine klare Öffnung begleitet dich."
+        ]
+    },
+
+    "NEIN": {
+        "Satz1": [
+            "Der Weg bleibt verschlossen.",
+            "Eine deutliche Zurückhaltung liegt im Feld.",
+            "Die Richtung antwortet mit Stille."
+        ],
+        "Satz2": [
+            "Die Energie zieht sich zurück.",
+            "Nichts öffnet sich in dieser Bewegung.",
+            "Der Impuls bleibt ohne Resonanz."
+        ],
+        "Satz3": [
+            "Du darfst diesen Weg loslassen.",
+            "Ein Richtungswechsel bringt mehr Klarheit.",
+            "Stille ist hier die Antwort."
+        ]
+    },
+
+    "TENDENZ-JA": {
+        "Satz1": [
+            "Der Weg zeigt eine Öffnungstendenz.",
+            "Etwas bewegt sich vorsichtig nach vorn.",
+            "Eine leichte Zustimmung liegt im Feld."
+        ],
+        "Satz2": [
+            "Noch ist nicht alles klar, doch die Richtung wirkt einladend.",
+            "Die Energie beginnt sich zu öffnen.",
+            "Ein zarter Impuls entsteht."
+        ],
+        "Satz3": [
+            "Mit Geduld kann sich dieser Weg entfalten.",
+            "Eine behutsame Öffnung begleitet dich.",
+            "Der Impuls wächst langsam."
+        ]
+    },
+
+    "TENDENZ-NEIN": {
+        "Satz1": [
+            "Der Weg zeigt eine Blockadetendenz.",
+            "Etwas hält die Bewegung zurück.",
+            "Eine leichte Ablehnung liegt im Feld."
+        ],
+        "Satz2": [
+            "Noch ist nicht alles entschieden, doch die Richtung wirkt zurückhaltend.",
+            "Die Energie bleibt verhalten.",
+            "Der Impuls zieht sich eher zurück."
+        ],
+        "Satz3": [
+            "Ein Loslassen bringt mehr Klarheit.",
+            "Der Weg öffnet sich hier nicht weiter.",
+            "Stille statt Bewegung."
+        ]
+    }
+};
+
+// ------------------------------------------------------------
+// Kartenliste
+// ------------------------------------------------------------
+let karten = [
+"Abgrund.png","Angriff.png","Arbeit.png","Bindung.png","Brief-Nachricht.png",
+"Eigentum.png","Einsamkeit.png","Entscheidung.png","Ernaehrung-Schwund.png",
+"Familie.png","Frau.png","Fremde.png","Geburt.png","Geschenk.png",
+"Gestaltung-Kunst.png","Gesundheit.png","Glück.png","Gut-Boese.png",
+"Hass.png","Irrtum.png","Jagd.png","Jahreszeiten.png","Kameradschaft-Freundschaft.png",
+"Kind.png","Krafttier.png","Krankheit.png","Lebenszyklus.png","Liebe.png",
+"Magie.png","Mann.png","Monat.png","Mutter-Natur-Gaia.png",
+"Neid.png","Not.png","Opfer.png","Pech.png","Politik-Diplomatie.png",
+"Reise.png","Religion.png","See.png","Selbstfindung.png","Stillstand.png",
+"Suche.png","Tag-Nacht.png","Trennung.png","Unentschlossenheit.png",
+"Veränderung.png","Versagen.png","Verteidigung.png","Wachstum.png","Ziel.png","Schwur.png"
+];
+
+// ------------------------------------------------------------
+// Shuffle
+// ------------------------------------------------------------
+for (let i = karten.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [karten[i], karten[j]] = [karten[j], karten[i]];
+}
+
+// ------------------------------------------------------------
+// Zwei Karten ziehen
+// ------------------------------------------------------------
+let karte1 = karten.pop();
+let karte2 = karten.pop();
+
+// ------------------------------------------------------------
+// Licht/Schatten
+// ------------------------------------------------------------
+function lichtOderSchatten() {
+    return Math.random() < 0.5 ? "Licht" : "Schatten";
+}
+
+let modus1 = lichtOderSchatten();
+let modus2 = lichtOderSchatten();
+
+// ------------------------------------------------------------
+// Ergebnislogik
+// ------------------------------------------------------------
+let ergebnisKategorie = "";
+let dritteKarte = null;
+let dritteModus = null;
+
+if (modus1 === "Licht" && modus2 === "Licht") {
+    ergebnisKategorie = "JA";
+} else if (modus1 === "Schatten" && modus2 === "Schatten") {
+    ergebnisKategorie = "NEIN";
+} else {
+    dritteKarte = karten.pop();
+    dritteModus = lichtOderSchatten();
+    ergebnisKategorie = dritteModus === "Licht" ? "TENDENZ-JA" : "TENDENZ-NEIN";
+}
+
+// ------------------------------------------------------------
+// Reiner Kartenname
+// ------------------------------------------------------------
+function kartenName(datei) {
+    return datei.replace(".png", "").replace(/-/g, " ");
+}
+
+// ------------------------------------------------------------
+// Zufällige Sätze
+// ------------------------------------------------------------
+function zufallsSatz(kategorie, nummer) {
+    let pool = satzPools[kategorie][`Satz${nummer}`];
+    return pool[Math.floor(Math.random() * pool.length)];
+}
+
+// ------------------------------------------------------------
+// Anzeige
+// ------------------------------------------------------------
+function zeigeErgebnis() {
+    let container = document.getElementById("kartenAnzeige");
+
+    function karteHTML(datei, modus) {
+        return `
+        <div class="karte-wrapper">
+            <div class="karte ${modus}" style="background-image:url('../../assets/bilder/livsvei-orakel/${datei}')"></div>
+            <div class="karten-name">${kartenName(datei)}</div>
+        </div>`;
+    }
+
+    container.innerHTML = 
+        karteHTML(karte1, modus1) + 
+        karteHTML(karte2, modus2);
+
+    if (dritteKarte) {
+        container.innerHTML += karteHTML(dritteKarte, dritteModus);
+    }
+
+    document.getElementById("kategorie").innerHTML = ergebnisKategorie;
+
+    let antwort =
+        zufallsSatz(ergebnisKategorie, 1) + " " +
+        zufallsSatz(ergebnisKategorie, 2) + " " +
+        zufallsSatz(ergebnisKategorie, 3);
+
+    document.getElementById("ergebnisText").innerHTML = antwort;
+}
+
+zeigeErgebnis();
+</script>
+
+</body>
+</html>

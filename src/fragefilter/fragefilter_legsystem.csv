@@ -1,0 +1,9 @@
+legesystem,kategorie,regel,aktion
+spiralschluessel,entscheidung,unklar,umformulieren
+spiralschluessel,richtung,neutral,grün
+auge,emotion,überladen,gelb
+auge,frage,fehlend,gelb
+traeger,entscheidung,neutral,grün
+traeger,frage,fehlend,gelb
+dualitaet,konflikt,stark,gelb
+dualitaet,frage,fehlend,gelb

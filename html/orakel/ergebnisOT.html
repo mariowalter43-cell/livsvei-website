@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+<meta charset="UTF-8">
+<title>Ergebnis – Pfad des Trägers</title>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #ffffff;
+  color: #222;
+  text-align: center;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: #000;
+  padding: 1.5rem 2rem;
+  border-bottom: 2px solid #C8A951;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  color: #C8A951;
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+header .startlink {
+  color: #C8A951;
+  text-decoration: none;
+  font-size: 1rem;
+  border: 1px solid #C8A951;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  transition: 0.2s;
+}
+
+header .startlink:hover {
+  background: #C8A951;
+  color: #000;
+}
+
+#frageAnzeige {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  color: #000;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#einleitung {
+  max-width: 700px;
+  margin: 2rem auto 1rem auto;
+  font-size: 1.2rem;
+  color: #444;
+  padding: 0 1rem;
+}
+
+.karten-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.karte-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 180px;
+}
+
+.karte {
+  width: 180px;
+  height: 260px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  border: 6px solid transparent;
+}
+
+.Licht {
+  border: 6px solid white;
+  box-shadow: 0 0 0 3px black;
+}
+
+.Schatten {
+  border: 6px solid black;
+  box-shadow: 0 0 10px rgba(0,0,0,0.8);
+}
+
+.karten-name {
+  margin-top: 0.6rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+#schluss {
+  max-width: 700px;
+  margin: 2.5rem auto;
+  font-size: 1.3rem;
+  padding: 0 1rem;
+  color: #000;
+}
+
+footer {
+  margin-top: auto;
+  padding: 1.5rem;
+  background: #000;
+  border-top: 2px solid #C8A951;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: #C8A951;
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+  <h1>Dein Träger‑Impuls</h1>
+  <a href="../index.html" class="startlink">Startseite</a>
+</header>
+
+<div id="frageAnzeige"></div>
+<div id="einleitung"></div>
+<div class="karten-container" id="karten"></div>
+<div id="schluss"></div>
+
+<footer>
+  <a href="../index.html">Startseite</a> |
+  <a href="../tempel/impressum.html">Impressum & Kontakt</a> |
+  <a href="../tempel/datenschutz.html">Datenschutz</a>
+  <div style="margin-top: 0.5rem;">© 2026 LIVSVEI</div>
+</footer>
+
+<script>
+// ------------------------------------------------------------
+// Frage laden
+// ------------------------------------------------------------
+const frage = localStorage.getItem("ot_frage") || "Keine Frage ausgewählt";
+document.getElementById("frageAnzeige").innerText = frage;
+
+
+// ------------------------------------------------------------
+// Einleitungs- und Schlusstexte
+// ------------------------------------------------------------
+const texte = {
+  "Wie steht es um meine innere Kraft?": {
+    einleitung: [
+      "Manchmal zeigt sich Kraft nicht im Tun, sondern im Erkennen. Diese sechs Karten spiegeln, wo deine innere Stärke atmet — und wo sie Raum sucht.",
+      "Innere Kraft ist kein Zustand, sondern ein Rhythmus. Die Karten zeigen dir, welche Qualitäten in dir gerade erwachen oder ruhen.",
+      "Deine Kraft ist da. Doch wie sie sich formt, verändert sich. Die folgenden Impulse zeigen dir, welche Aspekte deiner Stärke jetzt sichtbar werden."
+    ],
+    schluss: [
+      "Nimm diese Hinweise nicht als Urteil, sondern als Einladung, deine Kraft bewusster zu führen.",
+      "Was du hier siehst, ist kein Maßstab — sondern ein Spiegel. Er zeigt dir, wo deine Energie bereit ist, sich zu sammeln.",
+      "Deine Kraft wächst dort, wo du ihr Aufmerksamkeit schenkst. Diese Karten weisen nur auf die Stellen, an denen sie bereits beginnt."
+    ]
+  },
+
+  "Welcher Schatten blockiert meinen Weg?": {
+    einleitung: [
+      "Schatten sind keine Feinde. Sie sind ungehörte Botschaften. Diese Karten zeigen dir, welche inneren Muster gerade nach Licht verlangen.",
+      "Ein Schatten blockiert nicht — er schützt. Die Karten offenbaren, wovor du dich unbewusst bewahren wolltest.",
+      "Der Schatten ist ein Teil deines Weges. Diese sechs Impulse zeigen dir, welche inneren Bewegungen noch ungeklärt sind."
+    ],
+    schluss: [
+      "Nimm den Schatten nicht als Last, sondern als Richtung. Er zeigt dir, wo Freiheit beginnt.",
+      "Was hier sichtbar wurde, ist kein Hindernis — sondern ein Übergang. Du entscheidest, wie du ihn gehst.",
+      "Der Schatten verliert seine Macht, sobald du ihn ansiehst. Diese Karten waren ein erster Blick."
+    ]
+  },
+
+  "Welche neue Möglichkeit will sich zeigen?": {
+    einleitung: [
+      "Möglichkeiten klopfen selten laut. Diese Karten zeigen dir, welche Türen sich innerlich oder äußerlich zu öffnen beginnen.",
+      "Eine neue Möglichkeit entsteht, wenn etwas in dir bereit wird. Die folgenden Impulse zeigen, wohin sich dein innerer Kompass bewegt.",
+      "Nicht jede Möglichkeit ist sichtbar. Diese sechs Karten spiegeln, welche Richtung sich gerade in dir formt."
+    ],
+    schluss: [
+      "Nimm diese Hinweise als zarte Bewegungen — nicht als Ziel. Möglichkeiten wachsen im Gehen.",
+      "Was sich zeigt, ist kein Versprechen, sondern ein Potenzial. Du entscheidest, ob du es nährst.",
+      "Die Möglichkeit ist bereits da. Diese Karten haben dir nur gezeigt, wo sie ansetzt."
+    ]
+  },
+
+  "Wo ist jetzt Mut zur Handlung gefragt?": {
+    einleitung: [
+      "Mut entsteht nicht aus Druck, sondern aus Klarheit. Diese Karten zeigen dir, wo eine Handlung reif wird.",
+      "Handlung ist kein Zwang, sondern ein Schritt in die eigene Wahrheit. Die folgenden Impulse zeigen dir, wo Bewegung möglich ist.",
+      "Mut ist die Brücke zwischen Erkenntnis und Weg. Diese sechs Karten spiegeln, wo diese Brücke gerade entsteht."
+    ],
+    schluss: [
+      "Nimm diese Hinweise als Orientierung — nicht als Auftrag. Mut wächst aus dir, nicht aus den Karten.",
+      "Was hier sichtbar wurde, zeigt nur eine Richtung. Der Schritt selbst gehört dir.",
+      "Mut ist kein Sprung, sondern ein erster Atemzug. Diese Karten zeigen dir, wo er beginnt."
+    ]
+  }
+};
+
+
+// ------------------------------------------------------------
+// Bedeutungsdatenbank – kompakte Version aller 52 Karten
+// ------------------------------------------------------------
+const kartenDaten = {
+  "Selbstfindung": {innerer:"Selbstakzeptanz und Klarheit über eigene Werte.", schatten:"Der kalte Stein des Zweifels."},
+  "Entscheidung": {innerer:"Innere Fähigkeit zur klaren Wahl.", schatten:"Die Lähmung des Zaunschläfers."},
+  "Religion": {innerer:"Suche nach innerem Glauben.", schatten:"Der goldene Käfig des Dogmas."},
+  "Abgrund": {innerer:"Konfrontation mit tiefen Ängsten.", schatten:"Die Paralyse des Kontrollverlusts."},
+  "Eigentum": {innerer:"Erkennen inneren Reichtums.", schatten:"Die Fessel des Goldes."},
+  "Frau": {innerer:"Versöhnung mit Intuition und Gefühl.", schatten:"Die Fessel der Erwartung."},
+  "Jahreszeiten": {innerer:"Akzeptanz innerer Rhythmen.", schatten:"Gegen-den-Strom-Schwimmen."},
+  "Pech": {innerer:"Loslassen von Kontrolle.", schatten:"Die Spirale des Fatalismus."},
+  "Schwur": {innerer:"Inneres Versprechen.", schatten:"Die Kette der Vergangenheit."},
+  "Unentschlossenheit": {innerer:"Zeit für innere Klärung.", schatten:"Lähmung durch Zögern."},
+  "Krafttier": {innerer:"Instinktsicherheit und Stärke.", schatten:"Abhängigkeit von fremder Kraft."},
+  "Angriff": {innerer:"Konfrontation befreit Energie.", schatten:"Die Peitsche des inneren Kritikers."},
+  "Mann": {innerer:"Aktive, gestaltende Kraft.", schatten:"Die Fessel der Bevormundung."},
+  "Politik-Diplomatie": {innerer:"Balance zwischen Wahrheit und Harmonie.", schatten:"Die Maske der Heuchelei."},
+  "Gut-Boese": {innerer:"Akzeptanz innerer Widersprüche.", schatten:"Die Falle des Schwarz-Weiss-Denkens."},
+  "Opfer": {innerer:"Befreiung von alten Mustern.", schatten:"Die Fessel der Opferrolle."},
+  "Geschenk": {innerer:"Wertschätzung eigener Talente.", schatten:"Der Preis der Erwartung."},
+  "Geburt": {innerer:"Innere Erneuerung.", schatten:"Die Angst vor dem Unbekannten."},
+  "Kind": {innerer:"Neugier und Unschuld.", schatten:"Die Last ungeheilter Wunden."},
+  "Wachstum": {innerer:"Reife und Entwicklung.", schatten:"Die Welle der Überforderung."},
+  "Ernaehrung-Schwund": {innerer:"Selbstfürsorge und innere Fülle.", schatten:"Die stille Leere der Erschöpfung."},
+  "Fremde": {innerer:"Erkundung neuer innerer Räume.", schatten:"Die Maske der Anpassung."},
+  "Tag-Nacht": {innerer:"Balance von Licht und Schatten.", schatten:"Die stille Wache der Dunkelheit."},
+  "Arbeit": {innerer:"Sinnvolles Tun im Einklang mit dir.", schatten:"Das stille Ausbrennen."},
+  "Verteidigung": {innerer:"Innere Sicherheit.", schatten:"Die Mauer alter Wunden."},
+  "Hass": {innerer:"Wut wandelt sich in Klarheit.", schatten:"Die Glut des Grolls."},
+  "Krankheit": {innerer:"Hinweis auf seelische Botschaften.", schatten:"Der stille Ruf des Körpers."},
+  "Gesundheit": {innerer:"Gleichgewicht und Ruhe.", schatten:"Das Rauschen der Selbstvergessenheit."},
+  "Monat": {innerer:"Geduld mit Prozessen.", schatten:"Die tickende Uhr der Unzufriedenheit."},
+  "Suche": {innerer:"Orientierung zum inneren Kern.", schatten:"Der leere Blick ins Außen."},
+  "Mutter-Natur-Gaia": {innerer:"Verbundenheit mit deiner Natur.", schatten:"Die Sehnsucht nach Rückbindung."},
+  "Gestaltung-Kunst": {innerer:"Schöpferische Entfaltung.", schatten:"Die stumme Kreativität."},
+  "Reise": {innerer:"Innere Transformation.", schatten:"Die Flucht vor dir selbst."},
+  "Bindung": {innerer:"Selbstverbundenheit.", schatten:"Die Kette der inneren Spaltung."},
+  "Liebe": {innerer:"Mitgefühl und Fülle.", schatten:"Die Angst vor dem Alleinsein."},
+  "Stillstand": {innerer:"Wachstum im Innehalten.", schatten:"Die unbewegte Zeit."},
+  "Trennung": {innerer:"Loslassen alter Muster.", schatten:"Der stille Riss im Inneren."},
+  "Magie": {innerer:"Intuition und Schöpferkraft.", schatten:"Der Schleier der Täuschung."},
+  "Lebenszyklus": {innerer:"Akzeptanz des Wandels.", schatten:"Der Kreis der Lektionen."},
+  "See": {innerer:"Loslassen und Tiefe.", schatten:"Die stille Hoffnungslosigkeit."},
+  "Einsamkeit": {innerer:"Selbstreflexion.", schatten:"Die Leere hinter der Fassade."},
+  "Neid": {innerer:"Erkennen eigener Wünsche.", schatten:"Die stille Gier."},
+  "Not": {innerer:"Resilienz in Krisen.", schatten:"Die Enge der Verzweiflung."},
+  "Versagen": {innerer:"Lernen aus Fehlern.", schatten:"Die Stimme des Kritikers."},
+  "Irrtum": {innerer:"Klärung alter Täuschungen.", schatten:"Der falsche Blick."},
+  "Jagd": {innerer:"Antrieb und Zielkraft.", schatten:"Die Rastlosigkeit."},
+  "Veraenderung": {innerer:"Bereitschaft zur Wandlung.", schatten:"Die Zerrissenheit davor."},
+  "Glueck": {innerer:"Vertrauen in innere Weisheit.", schatten:"Die Angst, es nicht zu verdienen."},
+  "Kameradschaft-Freundschaft": {innerer:"Innere Verbundenheit.", schatten:"Die Angst, sich zu zeigen."},
+  "Familie": {innerer:"Innere Geborgenheit.", schatten:"Die stille Entfremdung."},
+  "Brief-Nachricht": {innerer:"Hören auf die innere Stimme.", schatten:"Die verwirrte Botschaft."},
+  "Ziel": {innerer:"Ausrichtung auf deinen Weg.", schatten:"Die Leere nach dem Gipfel."}
+};
+
+
+// ------------------------------------------------------------
+// 6 Karten ziehen – ohne Wiederholung
+// ------------------------------------------------------------
+function zieheKarten() {
+  const titelListe = Object.keys(kartenDaten);
+  const pool = [...titelListe];
+
+  // Fisher-Yates Shuffle
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+
+  const gezogene = pool.slice(0, 6).map(titel => ({
+    titel,
+    licht: Math.random() < 0.5,
+    daten: kartenDaten[titel]
+  }));
+
+  return gezogene;
+}
+
+
+// ------------------------------------------------------------
+// Darstellung
+// ------------------------------------------------------------
+function render() {
+  const block = texte[frage];
+
+  if (block) {
+    const einl = block.einleitung[Math.floor(Math.random() * block.einleitung.length)];
+    document.getElementById("einleitung").innerText = einl;
+  }
+
+  const karten = zieheKarten();
+  const container = document.getElementById("karten");
+
+  karten.forEach(k => {
+    const div = document.createElement("div");
+    div.className = "karte-wrapper";
+
+    const dateiname = `${k.titel}.png`;
+
+    div.innerHTML = `
+      <div class="karte ${k.licht ? "Licht" : "Schatten"}"
+           style="background-image:url('../../assets/bilder/livsvei-orakel/${dateiname}')"></div>
+      <div class="karten-name">${k.titel}</div>
+      <p style="max-width:180px;font-size:0.9rem;margin-top:0.5rem;">
+        ${k.licht ? k.daten.innerer : k.daten.schatten}
+      </p>
+    `;
+
+    container.appendChild(div);
+  });
+
+  if (block) {
+    const schl = block.schluss[Math.floor(Math.random() * block.schluss.length)];
+    document.getElementById("schluss").innerText = schl;
+  }
+}
+
+window.onload = render;
+</script>
+
+</body>
+</html>

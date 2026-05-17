@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Pfad der Dualität – Weg‑Impulsgeber</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #ffffff;
+      color: #222;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    header {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    header a {
+      text-decoration: none;
+      color: #000;
+      font-size: 1rem;
+      border: 1px solid #000;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      transition: 0.2s;
+    }
+
+    header a:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    h1 {
+      margin-top: 2rem;
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    .einleitung {
+      max-width: 700px;
+      margin: 2rem auto;
+      font-size: 1.1rem;
+      color: #444;
+      line-height: 1.7;
+      padding: 0 1rem;
+    }
+
+    .frage-block {
+      margin-top: 2rem;
+    }
+
+    select {
+      padding: 0.6rem;
+      font-size: 1rem;
+      width: 300px;
+      margin-top: 0.5rem;
+    }
+
+    button {
+      margin-top: 2.5rem;
+      padding: 0.9rem 1.8rem;
+      font-size: 1.1rem;
+      background: #C8A951;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+      color: #fff;
+    }
+
+    button:hover {
+      background: #b09045;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <a href="orakelwege.html">← Zurück</a>
+</header>
+
+<h1>Pfad der Dualität</h1>
+
+<div class="einleitung">
+  <p><strong>Manchmal antwortet ein Weg leise. Manchmal deutlich. <br> 
+  Und manchmal zeigt er nur eine Richtung, ohne zu sagen, wohin sie führt.</strong></p>
+
+  <p>Der Pfad der Dualität ist kein Entscheidungsorakel. <br> 
+  Er gibt keine Anweisungen, keine Verpflichtungen, keine Zukunftsversprechen. <br> 
+  Er ist ein <strong>Weg‑Impulsgeber</strong>.</p>
+
+  <p>Er zeigt dir lediglich, wie der Weg auf dich reagiert: <br>
+  Ob er sich öffnet, verschlossen bleibt oder noch unklar ist.</p>
+
+  <p>Mehr sagt er nicht.  
+  Mehr muss er nicht sagen.</p>
+</div>
+
+<div class="frage-block">
+  <h2>Welche Weg‑Frage bewegt dich?</h2>
+
+  <select id="wegFrage">
+    <option value="">– Frage wählen –</option>
+    <option>Ist dieser Weg noch mein Weg?</option>
+    <option>Öffnet sich der Weg – oder ist es Zeit, ihn zu verlassen?</option>
+    <option>Werde ich hier meinen Weg finden?</option>
+  </select>
+</div>
+
+<button onclick="startRitual()">Weg‑Impuls empfangen</button>
+
+<script>
+function startRitual() {
+  const frage = document.getElementById("wegFrage").value;
+
+  if (!frage) {
+    alert("Bitte wähle eine Weg‑Frage aus.");
+    return;
+  }
+
+  // Frage speichern
+  localStorage.setItem("od_frage", frage);
+
+  // Weiterleitung zum Ergebnis
+  window.location.href = "ergebnisOD.html";
+}
+</script>
+
+</body>
+</html>

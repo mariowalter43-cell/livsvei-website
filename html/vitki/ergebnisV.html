@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Vitki – Ergebnis</title>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: url("../../assets/bilder/wald/wald01.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: -1;
+}
+
+header {
+  background: rgba(0,0,0,0.8);
+  padding: 1.5rem 2rem;
+  border-bottom: 2px solid #C8A951;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  color: #C8A951;
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+header .startlink {
+  color: #C8A951;
+  text-decoration: none;
+  font-size: 1rem;
+  border: 1px solid #C8A951;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  transition: 0.2s;
+}
+
+header .startlink:hover {
+  background: #C8A951;
+  color: #000;
+}
+
+#introText, #abschlussText {
+  max-width: 800px;
+  margin: 2rem auto;
+  font-size: 1.3rem;
+  padding: 0 1rem;
+}
+
+.rune-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.rune-wrapper {
+  width: 220px;
+  text-align: center;
+}
+
+.rune {
+  width: 220px;
+  aspect-ratio: 1 / 1;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 12px;
+  border: 3px solid transparent;
+  padding: 12px;
+  box-sizing: border-box;
+
+  /* hebt die Kachel farblich vom Hintergrund ab */
+  background-color: rgba(0,0,0,0.35);
+  backdrop-filter: blur(2px);
+}
+
+.Licht {
+  border-color: #ffffff;
+  box-shadow: 0 0 10px rgba(255,255,255,0.5), 0 0 0 3px #C8A951;
+}
+
+.Schatten {
+  border-color: #000000;
+  box-shadow: 0 0 14px rgba(0,0,0,0.9);
+}
+
+.rune-name {
+  margin-top: 0.6rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #C8A951;
+}
+
+.rune-text {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  max-width: 220px;
+  line-height: 1.45;
+  color: #ffffff;
+}
+
+.rune-text .kurzbedeutung {
+  color: #C8A951;
+  font-weight: 600;
+}
+
+footer {
+  margin-top: auto;
+  padding: 1.5rem;
+  background: rgba(0,0,0,0.8);
+  border-top: 2px solid #C8A951;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: #C8A951;
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<header>
+  <h1>Vitki – Haltungsergebnis</h1>
+  <a href="../index.html" class="startlink">Startseite</a>
+</header>
+
+<div id="introText"></div>
+
+<div class="rune-container" id="runeContainer"></div>
+
+<div id="abschlussText"></div>
+
+<footer>
+  <a href="../index.html">Startseite</a> |
+  <a href="../tempel/impressum.html">Impressum & Kontakt</a> |
+  <a href="../tempel/datenschutz.html">Datenschutz</a>
+  <div style="margin-top: 0.5rem;">© 2026 LIVSVEI</div>
+</footer>
+
+<script>
+// ------------------------------------------------------------
+// Frage + Name laden
+// ------------------------------------------------------------
+const frage = localStorage.getItem("v_frage") || "Keine Frage";
+const name = localStorage.getItem("nutzer_name") || "Reisender";
+
+// ------------------------------------------------------------
+// Vitki-Bausteine
+// ------------------------------------------------------------
+const introTexte = [
+  `${name}, du hast deine Frage gestellt: „${frage}“. Die Runen zeigen dir nun, welche Haltung in dir bereit ist, sichtbar zu werden.`,
+  `${name}, zu deiner Frage „${frage}“ treten einige Runen hervor. Sie spiegeln nicht die Zukunft — sondern deine innere und äußere Haltung in diesem Moment.`,
+  `Die Runen antworten nicht auf „was wird“, sondern auf „wie stehe ich“. Zu deiner Frage „${frage}“ zeigen sie dir jetzt eine Richtung, ${name}.`,
+  `${name}, du hast nach „${frage}“ gefragt. Die Runen legen offen, welche Kräfte in dir gerade wirken — und welche Haltung daraus entsteht.`
+];
+
+const uebergangLicht = [
+  "Die Rune [Rune] zeigt ihre klare Seite. Sie erinnert dich an eine Haltung, die stärkt:",
+  "[Rune] tritt im Licht hervor. Eine konstruktive Kraft wird sichtbar:",
+  "Das Licht von [Rune] legt offen, was in dir bereit ist, sich zu entfalten:",
+  "[Rune] erscheint hell und deutlich. Eine klare Haltung zeigt sich:",
+  "In [Rune] zeigt sich eine klare, aufrichtige Kraft, die dich stärkt:",
+  "Die helle Seite von [Rune] erinnert dich an das, was in dir wächst:",
+  "[Rune] tritt im Licht hervor und öffnet dir einen Raum der Klarheit:",
+  "Die Rune [Rune] zeigt eine Haltung, die dich aufrichtet und sammelt:",
+  "Im Licht von [Rune] wird sichtbar, was in dir bereit ist, sich zu entfalten:",
+  "[Rune] erscheint hell und ruhig — eine Einladung zu innerer Ordnung:",
+  "Die lichte Kraft von [Rune] zeigt dir, wo du bereits im Einklang bist:",
+  "[Rune] bringt eine klare, konstruktive Bewegung in dein Feld:",
+  "Die helle Präsenz von [Rune] macht sichtbar, was dich stärkt und zentriert:",
+  "[Rune] zeigt eine Haltung, die dich auf deinem Weg unterstützt:",
+  "Im Licht dieser Rune erkennst du, was in dir bereits reift:",
+  "[Rune] öffnet einen hellen Raum, in dem du dich ausrichten kannst:"
+];
+
+const uebergangSchatten = [
+  "Die Rune [Rune] zeigt ihre Schattenseite. Sie weist auf eine Haltung hin, die Aufmerksamkeit braucht:",
+  "[Rune] tritt im Schatten hervor. Eine innere Spannung wird sichtbar:",
+  "Der Schatten von [Rune] zeigt dir, wo Zurückhaltung, Vorsicht oder Klärung nötig ist:",
+  "[Rune] erscheint gedämpft. Eine Haltung zeigt sich, die nach Bewusstheit verlangt:",
+  "Die Rune [Rune] zeigt eine Spannung, die Aufmerksamkeit braucht:",
+  "Im Schatten von [Rune] wird sichtbar, wo Klärung notwendig ist:",
+  "[Rune] weist auf eine Haltung hin, die dich gerade herausfordert:",
+  "Die gedämpfte Seite von [Rune] zeigt dir, wo du innehalten darfst:",
+  "[Rune] macht eine innere Reibung sichtbar, die nach Bewusstheit verlangt:",
+  "Der Schatten dieser Rune zeigt dir, wo du dich selbst zurückhältst:",
+  "[Rune] deutet auf ein Muster hin, das nach Aufmerksamkeit ruft:",
+  "Die Rune erscheint gedämpft — ein Hinweis auf eine unklare Bewegung in dir:",
+  "[Rune] zeigt eine Haltung, die dich gerade bremst oder verengt:",
+  "Im Schatten dieser Rune erkennst du, wo du vorsichtig und wachsam sein darfst:",
+  "[Rune] macht sichtbar, wo du dich neu ausrichten kannst:",
+  "Die Rune zeigt eine Spannung, die dich einlädt, bewusster zu werden:"
+];
+
+// ------------------------------------------------------------
+// ⭐ NEUE 12-Varianten-Abschlussliste
+// ------------------------------------------------------------
+const abschlussTexte = [
+  "Nimm diese Hinweise als Spiegel deiner Haltung. Der Weg entsteht unter deinen Schritten.",
+  `Was sichtbar wurde, zeigt nur Möglichkeiten — die Entscheidung liegt bei dir, ${name}.`,
+  "Bewahre diese Impulse in dir. Haltung zeigt sich erst, wenn du sie lebst.",
+  "Die Runen haben dir eine Richtung gezeigt. Den Schritt setzt du selbst.",
+  "Was du hier siehst, ist kein Urteil — nur ein Echo deiner inneren Bewegung.",
+  "Die Zeichen sind gesprochen. Doch die Form, die du daraus machst, gehört dir allein.",
+  "Nimm diese Runen als Orientierung, nicht als Vorgabe. Dein Weg bleibt frei.",
+  "Die Haltung, die sichtbar wurde, ist ein Anfang. Der Rest entfaltet sich im Tun.",
+  "Kein Schatten, kein Licht ist endgültig. Du bestimmst, was daraus wird.",
+  "Die Runen zeigen, was in dir bereit ist. Wie du darauf antwortest, ist deine Kunst.",
+  "Dies ist ein Moment der Klarheit. Der nächste gehört deiner Entscheidung.",
+  "Die Runen schweigen nun. Doch deine Haltung spricht weiter."
+];
+
+// ------------------------------------------------------------
+// Runen-Datenbank
+// ------------------------------------------------------------
+const runen = {
+  "Fehu": { licht: "Erschaffung, bewegliche Kraft, Erfolg, Fruchtbarkeit, Ausdehnung.", schatten: "Zerstörung, Rücksichtslosigkeit, Gier, unruhiges Verlangen." },
+  "Uruz": { licht: "Urkraft, Vitalität, Gesundheit, Formgebung, Manifestation.", schatten: "Starrheit, Schwäche, gebrochene Kraft." },
+  "Thurisaz": { licht: "Schutz, Durchbruch, klare Abgrenzung.", schatten: "Blockade, Einschränkung, zerstörerische Impulse." },
+  "Ansuz": { licht: "Inspiration, Weisheit, Kommunikation, Klarheit.", schatten: "Täuschung, Missverständnisse, Missbrauch von Wissen." },
+  "Raidho": { licht: "Ordnung, Rhythmus, Entwicklung, Weg zum Ziel.", schatten: "Stillstand, Wiederholung, Kontrollverlust." },
+  "Kenaz": { licht: "Erkenntnis, inneres Feuer, Heilung, Kreativität.", schatten: "Erlöschen, Ideenlosigkeit, Überhitzung." },
+  "Gebo": { licht: "Austausch, Harmonie, Gleichgewicht, Verbindung.", schatten: "Abhängigkeit, Verpflichtung, Schuldgefühle." },
+  "Wunjo": { licht: "Freude, Harmonie, Kameradschaft, Erfolg.", schatten: "Enttäuschung, Entfremdung, Scheinwelt." },
+  "Hagalaz": { licht: "Notwendige Unterbrechung, Schutz, Klarheit.", schatten: "Abriss, Chaos, erzwungene Pause." },
+  "Nauthiz": { licht: "Selbstbeherrschung, Widerstandskraft, Lernprozess.", schatten: "Not, Mangel, Verzweiflung." },
+  "Isa": { licht: "Stillstand, Konzentration, Ruhe, Sammlung.", schatten: "Kälte, Isolation, Erstarrung." },
+  "Jera": { licht: "Ernte, natürlicher Zyklus, Geduld, Entwicklung.", schatten: "Falsches Timing, ausbleibender Erfolg." },
+  "Eihwaz": { licht: "Wandlung, Ausdauer, Weisheit.", schatten: "Angst vor Veränderung, Verwirrung." },
+  "Perthro": { licht: "Schicksal, Offenbarung, verborgenes Wissen.", schatten: "Verlust, Leichtsinn, Geheimhaltung." },
+  "Algiz": { licht: "Schutz, Führung, Sicherheit.", schatten: "Vulnerabilität, Übervorsicht, Blockade." },
+  "Sowilo": { licht: "Erfolg, Kraft, Klarheit, Selbstvertrauen.", schatten: "Burnout, falscher Stolz, Übermacht." },
+  "Tiwaz": { licht: "Mut, Gerechtigkeit, Zielstrebigkeit.", schatten: "Ungerechtigkeit, Niederlage, Selbstaufgabe." },
+  "Berkano": { licht: "Wachstum, Heilung, Geborgenheit, Neuanfang.", schatten: "Stagnation, Familienkonflikte, mangelnde Fürsorge." },
+  "Ehwaz": { licht: "Vertrauen, Zusammenarbeit, Fortschritt.", schatten: "Stillstand, Misstrauen, Uneinigkeit." },
+  "Mannaz": { licht: "Gemeinschaft, Selbsterkenntnis, Partnerschaft.", schatten: "Isolation, Verrat, Arroganz." },
+  "Laguz": { licht: "Intuition, Heilung, Erneuerung.", schatten: "Verwirrung, Täuschung, emotionale Überforderung." },
+  "Ingwaz": { licht: "Reife, Ruhe, Fruchtbarkeit.", schatten: "Verschlossenheit, Verfall, Isolation." },
+  "Dagaz": { licht: "Erwachen, Klarheit, Durchbruch.", schatten: "Blindheit, verpasster Moment." },
+  "Othala": { licht: "Heimat, Schutz, Tradition.", schatten: "Flucht, Neid, Verlust des Ursprungs." }
+};
+
+// ------------------------------------------------------------
+// Runenwurf
+// ------------------------------------------------------------
+function wurf() {
+  const alle = Object.keys(runen);
+
+  for (let i = alle.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [alle[i], alle[j]] = [alle[j], alle[i]];
+  }
+
+  return alle
+    .filter(() => Math.random() < 0.25)
+    .map(r => ({
+      name: r,
+      licht: Math.random() < 0.5
+    }));
+}
+
+// ------------------------------------------------------------
+// Darstellung
+// ------------------------------------------------------------
+function render() {
+  document.getElementById("introText").innerText =
+    introTexte[Math.floor(Math.random() * introTexte.length)];
+
+  const sichtbare = wurf();
+  const container = document.getElementById("runeContainer");
+
+  sichtbare.forEach(r => {
+    const div = document.createElement("div");
+    div.className = "rune-wrapper";
+
+    const text = r.licht ? runen[r.name].licht : runen[r.name].schatten;
+    const uebergang = r.licht
+      ? uebergangLicht[Math.floor(Math.random() * uebergangLicht.length)]
+      : uebergangSchatten[Math.floor(Math.random() * uebergangSchatten.length)];
+
+    div.innerHTML = `
+      <div class="rune ${r.licht ? "Licht" : "Schatten"}"
+        style="background-image:url('../../assets/bilder/nordrun-orakel/${r.name.toUpperCase()}.png')"></div>
+      <div class="rune-name">${r.name}</div>
+      <p class="rune-text">${uebergang.replace("[Rune]", r.name)}<br><br><span class="kurzbedeutung">${text}</span></p>
+    `;
+
+    container.appendChild(div);
+  });
+
+  document.getElementById("abschlussText").innerText =
+    abschlussTexte[Math.floor(Math.random() * abschlussTexte.length)];
+}
+
+window.onload = render;
+</script>
+
+</body>
+</html>

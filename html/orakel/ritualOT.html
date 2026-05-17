@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Pfad des Trägers – Weg‑Impulsgeber</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #ffffff;
+      color: #222;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    header {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    header a {
+      text-decoration: none;
+      color: #000;
+      font-size: 1rem;
+      border: 1px solid #000;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      transition: 0.2s;
+    }
+
+    header a:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    h1 {
+      margin-top: 2rem;
+      font-size: 2rem;
+      font-weight: 500;
+    }
+
+    .einleitung {
+      max-width: 700px;
+      margin: 2rem auto;
+      font-size: 1.1rem;
+      color: #444;
+      line-height: 1.7;
+      padding: 0 1rem;
+    }
+
+    .frage-block {
+      margin-top: 2rem;
+    }
+
+    select {
+      padding: 0.6rem;
+      font-size: 1rem;
+      width: 300px;
+      margin-top: 0.5rem;
+    }
+
+    button {
+      margin-top: 2.5rem;
+      padding: 0.9rem 1.8rem;
+      font-size: 1.1rem;
+      background: #C8A951;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.2s;
+      color: #fff;
+    }
+
+    button:hover {
+      background: #b09045;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <a href="orakelwege.html">← Zurück</a>
+</header>
+
+<h1>Pfad des Trägers</h1>
+
+<div class="einleitung">
+  <p><strong>Der Träger prüft nicht die Zukunft.  
+  Er prüft die Haltung, mit der du ihr begegnest.</strong></p>
+
+  <p>Dieser Weg ist kein Orakel im klassischen Sinn.  
+  Er zeigt dir nicht, was geschehen wird –  
+  sondern was in dir bereit ist, gesehen zu werden.</p>
+
+  <p>Der Pfad des Trägers richtet den Blick nach innen:  
+  auf Kraft, Schatten, Möglichkeiten und Verantwortung.</p>
+
+  <p>Er ist ein <strong>Haltungs‑Impulsgeber</strong>.</p>
+</div>
+
+<div class="frage-block">
+  <h2>Welche Fokus‑Frage bewegt dich?</h2>
+
+  <select id="otFrage">
+    <option value="">– Frage wählen –</option>
+    <option>Wie steht es um meine innere Kraft?</option>
+    <option>Welcher Schatten blockiert meinen Weg?</option>
+    <option>Welche neue Möglichkeit will sich zeigen?</option>
+    <option>Wo ist jetzt Mut zur Handlung gefragt?</option>
+  </select>
+</div>
+
+<button onclick="startRitual()">Haltungs‑Impuls empfangen</button>
+
+<script>
+function startRitual() {
+  const frage = document.getElementById("otFrage").value;
+
+  if (!frage) {
+    alert("Bitte wähle eine Fokus‑Frage aus.");
+    return;
+  }
+
+  // Frage speichern
+  localStorage.setItem("ot_frage", frage);
+
+  // Weiterleitung zum Ergebnis
+  window.location.href = "ergebnisOT.html";
+}
+</script>
+
+</body>
+</html>

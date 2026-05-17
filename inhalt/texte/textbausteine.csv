@@ -1,0 +1,65 @@
+Baustein_Typ;Varianten_ID;Textinhalt
+
+Intro;1;"Sei gegrüsst, [Name]. Die Runen haben auf deine Frage gewartet: '[Frage]'. Horche nun auf das Raunen der Hölzer."
+Intro;2;"[Name], ich habe die Zeichen für dein Anliegen '[Frage]' geprüft. Die Analyse der Pfade beginnt jetzt."
+Intro;3;"Die Nebel lichten sich für dich, [Name]. Zu deiner Suche nach '[Frage]' offenbaren die Mächte folgendes Bild:"
+Intro;4;"Es steht geschrieben, [Name], dass jede Frage eine Antwort im Universum findet. Zu '[Frage]' ist dies dein Los:"
+
+Fragevariation;1;"Was bewegt dich im Kern deiner Frage '[Frage]'?"
+Fragevariation;2;"Welche Wahrheit möchtest du hinter '[Frage]' erkennen?"
+Fragevariation;3;"Was zeigt dir diese Situation über dich selbst?"
+Fragevariation;4;"Welche Entscheidung wartet in dir, wenn du an '[Frage]' denkst?"
+Fragevariation;5;"Welche Richtung fühlt sich für dich stimmig an?"
+Fragevariation;6;"Was möchte dein Inneres dir über '[Frage]' mitteilen?"
+Fragevariation;7;"Welche verborgene Sehnsucht liegt hinter deiner Frage?"
+Fragevariation;8;"Was ist die eigentliche Botschaft, die dich zu '[Frage]' geführt hat?"
+
+Kategorie-Ueberleitung;1;"Was deine Belange im Bereich [Kategorie] betrifft, so zeigt sich eine klare Tendenz:"
+Kategorie-Ueberleitung;2;"Im Gefüge von [Kategorie] bewegen sich die Kräfte wie folgt:"
+Kategorie-Ueberleitung;3;"Besonders für das Schicksalsfeld [Kategorie] ist diese Botschaft von Bedeutung:"
+Kategorie-Ueberleitung;4;"Blicken wir nun tiefer in die Strukturen von [Kategorie], um Klarheit zu finden:"
+
+Uebergang_Licht;1;"Die Rune [Rune] flüstert dir eine helle Botschaft zu. Die Zeichen stehen auf Entfaltung:"
+Uebergang_Licht;2;"Das Licht fällt ungehindert auf [Rune]. Der Pfad vor dir ist klar gezeichnet und offenbart:"
+Uebergang_Licht;3;"In der Rune [Rune] sammelt sich schöpferische Energie. Höre, welche konstruktive Kraft nun wirkt:"
+Uebergang_Licht;4;"Die Rune [Rune] zeigt ihr leuchtendes Antlitz. Ein wahrer und stärkender Rat offenbart sich dir:"
+
+Uebergang_Schatten;1;"Ein Schatten legt sich über die Rune [Rune]. Die verborgene Seite mahnt dich zur Wachsamkeit:"
+Uebergang_Schatten;2;"Die Rune [Rune] zeigt ihr dunkles Antlitz. Es gilt nun, folgendes Hindernis auf deinem Pfad zu erkennen:"
+Uebergang_Schatten;3;"In [Rune] spiegelt sich eine schwierige Kraft. Der Rat der Runen fordert dich zur Umkehr oder Vorsicht auf:"
+Uebergang_Schatten;4;"Die Energie von [Rune] ist getrübt. Höre die Warnung, die im Schatten dieser Rune für dich bereitliegt:"
+
+Neutral;1;"Etwas in dir möchte gesehen werden."
+Neutral;2;"Eine Entwicklung ist im Gange, auch wenn sie noch nicht sichtbar ist."
+Neutral;3;"Du stehst an einem Punkt der inneren Klärung."
+Neutral;4;"Diese Situation lädt dich ein, bewusster hinzuspüren."
+Neutral;5;"Ein Prozess entfaltet sich, der Geduld und Aufmerksamkeit braucht."
+
+Licht;1;"Du bist auf einem Weg der Klarheit und Entfaltung."
+Licht;2;"Eine innere Tür öffnet sich für dich."
+Licht;3;"Deine Stärke wird sichtbarer und tragfähiger."
+Licht;4;"Etwas in dir kommt in Einklang."
+Licht;5;"Du findest Zugang zu einer tieferen Wahrheit."
+
+Schatten;1;"Ein alter Glaubenssatz blockiert deinen natürlichen Fluss."
+Schatten;2;"Du hältst an etwas fest, das dich erschöpft."
+Schatten;3;"Eine innere Spannung fordert deine Aufmerksamkeit."
+Schatten;4;"Etwas in dir möchte endlich ausgesprochen werden."
+Schatten;5;"Ein ungelöster Konflikt wirkt im Hintergrund."
+
+Impuls;1;"Erlaube dir, einen Moment innezuhalten."
+Impuls;2;"Beobachte, bevor du handelst."
+Impuls;3;"Sprich aus, was du fühlst."
+Impuls;4;"Vertraue dem Prozess, der sich entfaltet."
+Impuls;5;"Gib dir selbst die Erlaubnis, klar zu sein."
+
+Legesystem;1;"Die Vergangenheit formt den Boden, auf dem du jetzt stehst."
+Legesystem;2;"Die Gegenwart zeigt, was sich gerade entfaltet."
+Legesystem;3;"Die Zukunft öffnet sich wie ein neuer Pfad."
+Legesystem;4;"Jede Position dieser Legung offenbart eine Facette deiner Wahrheit."
+Legesystem;5;"Die Karten sprechen im Zusammenspiel – nicht jede für sich allein."
+
+Abschluss;1;"Gehe nun mit Bedacht deinen Weg. Das Orakel hat gesprochen."
+Abschluss;2;"Möge die Weisheit der Runen dein Handeln leiten, [Name]."
+Abschluss;3;"Bewahre diese Erkenntnis in deinem Herzen, bis sich das Schicksal erneut wendet."
+Abschluss;4;"Die Zeichen sind gesetzt. Nun liegt es an dir, das Eisen zu schmieden."

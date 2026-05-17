@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Chronik – Livsvei</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #ffffff;
+      color: #222;
+      line-height: 1.8;
+    }
+
+    /* HEADER */
+    header {
+      background-color: black;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header a {
+      color: white;
+      margin-right: 20px;
+      text-decoration: none;
+    }
+
+    header span {
+      color: white;
+    }
+
+    header a:hover {
+      text-decoration: underline;
+    }
+
+    /* MAIN CONTENT */
+    main {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* SEKTION 1: Portrait + Text */
+    .section-1 {
+      display: grid;
+      grid-template-columns: 40% 60%;
+      gap: 3rem;
+      align-items: start;
+      margin-bottom: 5rem;
+    }
+
+    .section-1 img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .section-1-text h2 {
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      color: #000;
+    }
+
+    .section-1-text p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #333;
+    }
+
+    /* SEKTION 2: Drei Kacheln */
+    .section-2 {
+      margin-bottom: 5rem;
+    }
+
+    .kachel-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .kachel {
+      background: #fafafa;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: 0.3s;
+    }
+
+    .kachel:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .kachel img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .kachel-content {
+      padding: 1.5rem;
+    }
+
+    .kachel h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #000;
+    }
+
+    .kachel p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    .kachel ul {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+      color: #444;
+      font-size: 0.95rem;
+    }
+
+    .kachel li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+
+    /* SEKTION 3: Abschlussbtext */
+    .section-3 {
+      background: #f5f5f5;
+      padding: 2.5rem;
+      border-radius: 8px;
+      margin-top: 3rem;
+    }
+
+    .section-3 h3 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      color: #000;
+    }
+
+    .section-3 p {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    .section-3 p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* FOOTER */
+    footer {
+      background-color: black;
+      padding: 20px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: white;
+      margin-right: 20px;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .section-1 {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .kachel-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 2rem 1rem;
+      }
+
+      .section-1-text h2 {
+        font-size: 1.4rem;
+      }
+
+      .section-3 {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <a href="../index.html" style="color: white; margin-right: 20px; text-decoration: none;">Startseite</a>
+  <a href="../tempel.html" style="color: white; margin-right: 20px; text-decoration: none;">Tempelhalle</a>
+  <span style="color: white;">Chronik</span>
+</header>
+
+<main>
+
+  <!-- SEKTION 1: Portrait + Text -->
+  <div class="section-1">
+    <div>
+      <img src="../../assets/bilder/chronik/Mario.jpg" alt="Mario Walter">
+    </div>
+    <div class="section-1-text">
+      <h2>Alles über den Autor – Historie</h2>
+      <p>Der Pfad zum 'Orakel Meisterwerk Livsvei' – Eine Familiengeschichte</p>
+      <p>Schon seit Generationen ist die spirituelle Arbeit Teil meiner Familie. Meine Großmutter war eine 'weiße Hexe' der alten Schule, deren Weisheit in der Kräuterkunde und den Heilkräften der Natur verwurzelt war. Meine Mutter setzte diese Tradition fort und praktizierte erfolgreich Astro-Tarot für Klienten weltweit.</p>
+      <p>In meiner Jugend unterstützte ich meine Mutter und begann meine eigene Praxis mit einem Satz 24 selbst gefertigter Runenstäbe, geschnitzt aus verschiedenen regionalen Hölzern, inspiriert durch Odins Runenlied.</p>
+      <p>Doch ich erkannte zwei entscheidende Einschränkungen: Zum Einen litt die tiefgründige Arbeit unter dem gesellschaftlichen Missverständnis der Runen. Zum anderen boten die 24 Symbole oft nicht die nötige Tiefe und Präzision für die komplexen Fragen des modernen Lebens.</p>
+      <p>'Mein Orakel Meisterwerk Livsvei' ist die logische Weiterentwicklung dieser Suche. Mit 52 Karten und vier differenzierten Legesystemen habe ich ein Werkzeug geschaffen, das die Tradition ehrt, aber die nötige Klarheit und Bandbreite für jede Lebenslage bietet. Diese Reise des Verstehens – vom Kräuter Wissen zur astrologischen Deutung bis zur Schaffung neuer Karten – ist der Kern von allem, was ich tue.</p>
+    </div>
+  </div>
+
+  <!-- SEKTION 2: Drei Kacheln -->
+  <div class="section-2">
+    <div class="kachel-grid">
+
+      <!-- Kachel 1 -->
+      <div class="kachel">
+        <img src="../../assets/bilder/chronik/Runen-alt.jpg" alt="Die Wurzeln meiner Praxis">
+        <div class="kachel-content">
+          <h3>Die Wurzeln meiner Praxis: Runen und das unvollkommene System</h3>
+          <p>Das ist der Ausgangspunkt meiner eigenen spirituellen Arbeit. Inspiriert durch die nordischen Überlieferungen und Odins Runenlied, schnitt ich 24 Scheiben aus einem heimischen Ast, brannte die Runen per Hand ein und färbte die Ränder rot ein – ein tief persönliches und handwerkliches Ritual.</p>
+          <p><strong>Dieses erste System war ein wichtiger Lehrer, stieß jedoch schnell an seine Grenzen:</strong></p>
+          <ul>
+            <li><strong>Visuelle Hürde:</strong> Die Runen sind für Außenstehende schwer zu deuten, was das gemeinsame Sehen und Fühlen der Botschaft erschwert.</li>
+            <li><strong>Mangelnde Tiefe:</strong> Das 24-Runen-System bot oft keine zufriedenstellende Antwort auf komplexere Fragen des modernen Lebens.</li>
+            <li><strong>Kein vernünftiges Legesystem:</strong> Es fehlte die Präzision, die ich für eine echte Lebensnavigation suchte.</li>
+          </ul>
+          <p>Mir wurde klar: Ich brauchte ein System, das die Tiefe der Tradition beibehält, aber sehen, fühlen und verstehen für jeden zugänglich macht.</p>
+        </div>
+      </div>
+
+      <!-- Kachel 2 -->
+      <div class="kachel">
+        <img src="../../assets/bilder/chronik/Runen-neu.jpg" alt="Der Weg zur Synthese">
+        <div class="kachel-content">
+          <h3>Der Weg zur Synthese: Nordrun, Runen, Karten und die Familienerbschaft</h3>
+          <p>Um das Problem der visuellen und inhaltlichen Tiefe zu lösen, begann die Phase der Nordrun-Erschaffung. Hier verband ich das Wissen meiner Familie: das Pflanzen- und Kräuterwissen meiner Großmutter und das Karten-Tarot meiner Mutter.</p>
+          <p>Aus 24 verschiedenen Baumarten schnitzte ich vierkantige Runenstäbe, von denen jeder nur auf einer Seite eine Rune trug. Gleichzeitig entstanden die 24 Nordrun Orakelkarten. Das Ergebnis war ein aktivierendes System: Der Fragesteller zog die Runen selbst, und die sichtbaren Stäbe wurden mit den zugehörigen Karten gedeutet. Der aktive Part und die optische Antwort waren nun gegeben.</p>
+          <p><strong>Doch auch dieses System stieß an seine Grenzen:</strong></p>
+          <ul>
+            <li><strong>Gesellschaftlicher Schatten:</strong> Der Ruf der Runen in der Gesellschaft blieb leider negativ behaftet.</li>
+            <li><strong>Fehlende Nuance:</strong> Trotz der Erweiterung mit Karten konnten die 24 Symbole nicht alle Wege und fein nuancierten Antworten aufzeigen, die das Leben bereithält.</li>
+          </ul>
+          <p>Es war klar: Es musste ein System her, das frei von alten Vorurteilen war und eine neue Kartographie des Lebens ermöglichte.</p>
+        </div>
+      </div>
+
+      <!-- Kachel 3 -->
+      <div class="kachel">
+        <img src="../../assets/bilder/chronik/Orakel-Livsvei.jpg" alt="Das Meisterwerk Livsvei">
+        <div class="kachel-content">
+          <h3>Das Meisterwerk ist geboren: Livsvei – Die 52 Wochen des Lebens</h3>
+          <p>Nach der Nordrun-Phase war mir klar: Das neue System musste thematisch universell und visuell einzigartig sein. Ich behielt die tiefen, nordischen Themen bei, aber befreite sie von den Runen. Ich erweiterte die Bandbreite von 24 auf 52 Karten, um die 52 Wochen eines Jahres und damit den kompletten Zyklus des menschlichen Lebens abzubilden.</p>
+          <p><strong>In diesen 52 Karten vereinte ich alle Lektionen:</strong></p>
+          <ul>
+            <li>Wichtige Themen des Lebens, die sowohl die positiven als auch die negativen Pole abdecken.</li>
+            <li>Die drei Aspekte: Der innere Aspekt (E), der äußere Aspekt (F) und der Schatten/Kontrast (G).</li>
+          </ul>
+          <p>Der erste Satz, mein 'Livsvei Orakel', war geboren. Als ich das komplexe System testen wollte, scheiterte ich zunächst an der überwältigenden Tiefe. Die Lösung: Ich nutzte meine erste Legung und machte daraus die epische Geschichte von Lior den Kartographen – 'Der Pfad durch das Auge'.</p>
+          <p>Damit war die Vision vollständig: Ich wollte dieses umfassende System nicht nur für mich selbst, sondern für die Öffentlichkeit kostenlos zur Verfügung stellen.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SEKTION 3: Abschlussbtext -->
+  <div class="section-3">
+    <h3>Das Vermächtnis, die Tradition und die Zukunft</h3>
+    <p>Dieses Orakel Meisterwerk ist eine tief empfundene Widmung an meine verstorbene Großmutter und Mutter.<br>
+    In ihrer Tradition ist es mein größtes Anliegen, das Kernwissen dieses Systems und die Zugänge zu den Legungen dauerhaft kostenfrei an die Gemeinschaft weiterzugeben. Dies ist und bleibt das spirituelle Fundament dieser Arbeit.</p>
+    <p>Im Moment befindet sich dieses Projekt in einer Experimentierphase.<br>
+    Gleichzeitig erfordert die Erreichung der Vision – die Entwicklung einer professionellen Software und die Realisierung eines hochwertigen, gedruckten Orakel-Sets – einen enormen Zeit- und Kostenaufwand.<br>
+    Die langfristige Generierung notwendiger Einnahmen dient daher ausschließlich der Finanzierung der Entwicklung, der Qualitätssicherung und der nachhaltigen Pflege des Gesamtwerkes, um dessen Existenz für die Gemeinschaft dauerhaft zu sichern.<br>
+    Deine Unterstützung in Form von Empfehlungen und Geschichten ist der wichtigste Beitrag, um dieses Vermächtnis zu ehren und das notwendige Fundament für die Zukunft zu schaffen.</p>
+  </div>
+
+</main>
+
+<footer>
+  <a href="./impressum.html" style="color: white; margin-right: 20px; text-decoration: none;">Impressum</a>
+  <a href="./datenschutz.html" style="color: white; margin-right: 20px; text-decoration: none;">Datenschutz</a>
+  <a href="./nutzungsbedingungen.html" style="color: white; text-decoration: none;">Nutzungsbedingungen</a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+kategorie,regel,aktion,hinweis
+verboten,selbstverletzung,rot,"Hinweis auf Hilfsangebote"
+verboten,gewalt,rot,"Thema wird nicht beantwortet"
+verboten,medizin,gelb,"Frage wird neutralisiert"
+verboten,recht,gelb,"Keine Rechtsberatung möglich"
+sensibel,psychisch,gelb,"Frage wird umformuliert"
+sensibel,beziehung,gelb,"Neutralisierung der Formulierung"
+neutral,allgemein,grün,"Frage kann beantwortet werden"

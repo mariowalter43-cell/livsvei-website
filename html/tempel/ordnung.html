@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Raum der Ordnung – Livsvei</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #ffffff;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #000;
+      padding: 2.5rem 0;
+      text-align: center;
+    }
+
+    header img {
+      height: 90px;
+    }
+
+    nav {
+      margin-top: 1.8rem;
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      font-size: 1.05rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #C8A951;
+      transition: 0.2s;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    main {
+      padding: 4rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      color: #000;
+    }
+
+    .kachel-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .kachel {
+      border: 2px solid #C8A951;
+      background:#fff;
+      padding: 0;
+      overflow: hidden;
+      transition: 0.2s;
+    }
+
+    .kachel:hover {
+      background: #f7f3e8;
+      cursor: pointer;
+    }
+
+    .kachel img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .kachel-title {
+      padding: 1.2rem;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: #000;
+    }
+
+    footer {
+      background: #C8A951;
+      padding: 2rem 0;
+      text-align: center;
+      color: #000;
+      border-top: 2px solid #A88A35;
+      margin-top: 4rem;
+      font-size: 0.95rem;
+    }
+
+    footer a {
+      color: #000;
+      text-decoration: none;
+      margin: 0 0.5rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<header style="background-color: black; padding: 20px; text-align: center;">
+  <a href="../index.html" style="color: white; margin-right: 20px; text-decoration: none;">Startseite</a>
+  <a href="../tempel.html" style="color: white; margin-right: 20px; text-decoration: none;">Tempelhalle</a>
+  <span style="color: white;">Ordnung</span>
+</header>
+
+<main>
+  <h1>Ordnung & Struktur</h1>
+  <p>Hier findest du alle Bereiche, die Wissen, Übersicht und Klarheit schaffen.</p>
+
+  <div class="kachel-grid">
+
+    <!-- Bibliothek -->
+    <a href="bibliothek.html" style="text-decoration:none;">
+      <div class="kachel">
+        <img src="../../assets/bilder/figuren/Bibliothek.png" alt="Bibliothek">
+        <div class="kachel-title">📚 Bibliothek</div>
+      </div>
+    </a>
+
+    <!-- Chronik -->
+    <a href="chronik.html" style="text-decoration:none;">
+      <div class="kachel">
+        <img src="../../assets/bilder/figuren/Chronik.png" alt="Chronik">
+        <div class="kachel-title">📜 Chronik</div>
+      </div>
+    </a>
+
+    <!-- FAQ -->
+    <a href="faq.html" style="text-decoration:none;">
+      <div class="kachel">
+        <img src="../../assets/bilder/figuren/FAQ.png" alt="FAQ">
+        <div class="kachel-title">❓ FAQ</div>
+      </div>
+    </a>
+
+    <!-- Archiv -->
+    <a href="archiv.html" style="text-decoration:none;">
+      <div class="kachel">
+        <img src="../../assets/bilder/figuren/Archiv.png" alt="Archiv">
+        <div class="kachel-title">🗄️ Archiv</div>
+      </div>
+    </a>
+
+  </div>
+</main>
+
+<footer style="background-color: black; padding: 20px; text-align: center; margin-top: 40px;">
+  <a href="./impressum.html" style="color: white; margin-right: 20px; text-decoration: none;">Impressum</a>
+  <a href="./datenschutz.html" style="color: white; margin-right: 20px; text-decoration: none;">Datenschutz</a>
+  <a href="./nutzungsbedingungen.html" style="color: white; text-decoration: none;">Nutzungsbedingungen</a>
+</footer>
+</body>
+</html>

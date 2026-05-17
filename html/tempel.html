@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Tempelhalle – Livsvei</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #ffffff;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 2.5rem 0;
+      text-align: center;
+    }
+
+    header img {
+      height: 90px;
+    }
+
+    nav {
+      margin-top: 1.8rem;
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      font-size: 1.05rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #C8A951;
+      transition: 0.2s;
+    }
+
+    nav a:hover {
+      color: #000;
+    }
+
+    .tueren-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.5rem;
+      margin-top: 3rem;
+      padding: 0 2rem;
+    }
+
+    .tuer-block {
+      text-align: center;
+      width: 260px;
+    }
+
+    .tuer-box {
+      width: 260px;
+      height: 260px;
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tuer-box:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+    }
+
+    .tuer-box img {
+      width: 100%;
+      height: 70%;
+      object-fit: cover;
+    }
+
+    .tuer-titel {
+      padding: 1rem;
+      font-size: 1.3rem;
+      font-weight: 500;
+    }
+
+    .tuer-text {
+      margin-top: 0.8rem;
+      font-size: 1rem;
+      color: #000;
+      line-height: 1.4;
+    }
+
+    /* Gesperrte Tür */
+    .tuer-block.locked a {
+      cursor: pointer;
+    }
+
+    .tuer-block.locked .tuer-box {
+      position: relative;
+    }
+
+    .tuer-block.locked img {
+      filter: grayscale(100%) opacity(0.5);
+    }
+
+    .lock-icon {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 1.8rem;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      z-index: 10;
+    }
+
+    .tuer-text.protected {
+      color: #999;
+      font-style: italic;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      background: #C8A951;
+      padding: 2rem 0;
+      text-align: center;
+      color: #000;
+      border-top: 2px solid #A88A35;
+      margin-top: 3rem;
+      font-size: 0.95rem;
+    }
+
+    footer a {
+      color: #000;
+      text-decoration: none;
+      margin: 0 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .tueren-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header style="background: #000; padding: 2.5rem 0; text-align: center;">
+  <img src="../assets/logo/Logo.png" alt="Livsvei Logo">
+  <div style="margin-top: 1rem; font-size: 1.8rem; letter-spacing: 0.12em; color: #C8A951; font-weight: 500;">
+    TEMPELHALLE
+  </div>
+  <nav>
+    <a href="index.html">← Zurück</a>
+  </nav>
+</header>
+
+<!-- TÜREN – 3×2 -->
+<div class="tueren-container">
+
+  <!-- Ordnung -->
+  <div class="tuer-block">
+    <a href="tempel/ordnung.html">
+      <div class="tuer-box" style="background:#C8A951; border:2px solid #000;">
+        <img src="../assets/bilder/figuren/TürOrdnung.png">
+        <div class="tuer-titel" style="color:#000;">Ordnung</div>
+      </div>
+    </a>
+    <p class="tuer-text">
+      Ein Raum für Struktur.<br>
+      Hier findest du klare Ordnung.
+    </p>
+  </div>
+
+  <!-- Stille (KORRIGIERT) -->
+  <div class="tuer-block">
+    <a href="stille.html">
+      <div class="tuer-box" style="background:#fff; border:2px solid #C8A951;">
+        <img src="../assets/bilder/figuren/TürStille.png">
+        <div class="tuer-titel" style="color:#000;">Stille</div>
+      </div>
+    </a>
+    <p class="tuer-text">
+      Ein Ort der inneren Ruhe.<br>
+      Hier wartet die Stille auf dich.
+    </p>
+  </div>
+
+  <!-- Recht -->
+  <div class="tuer-block">
+    <a href="tempel/recht.html">
+      <div class="tuer-box" style="background:#000; border:2px solid #C8A951;">
+        <img src="../assets/bilder/figuren/TürRecht.png">
+        <div class="tuer-titel" style="color:#C8A951;">Recht</div>
+      </div>
+    </a>
+    <p class="tuer-text">
+      Der Ort der Wahrheit.<br>
+      Hier gelten alte Gesetze.
+    </p>
+  </div>
+
+  <!-- Wächter – GESPERRT -->
+  <div class="tuer-block locked">
+    <a onclick="checkPassword(event)">
+      <div class="tuer-box" style="background:#C8A951; border:2px solid #000;">
+        <div class="lock-icon">🔒</div>
+        <img src="../assets/bilder/figuren/TürWächter.png">
+        <div class="tuer-titel" style="color:#000;">Wächter</div>
+      </div>
+    </a>
+    <p class="tuer-text protected">
+      Zugang geschützt. Nur für den Hüter des Tempels.
+    </p>
+  </div>
+
+  <!-- Zukunft – GESPERRT -->
+  <div class="tuer-block locked">
+    <a onclick="checkPassword(event)">
+      <div class="tuer-box" style="background:#fff; border:2px solid #C8A951;">
+        <div class="lock-icon">🔒</div>
+        <img src="../assets/bilder/figuren/TürZukunft.png">
+        <div class="tuer-titel" style="color:#000;">Zukunft</div>
+      </div>
+    </a>
+    <p class="tuer-text protected">
+      Zugang geschützt. Nur für den Hüter des Tempels.
+    </p>
+  </div>
+
+  <!-- Stimmen – öffentlich -->
+  <div class="tuer-block">
+    <a href="stimmen.html">
+      <div class="tuer-box" style="background:#000; border:2px solid #C8A951;">
+        <img src="../assets/bilder/figuren/TürStimmen.png">
+        <div class="tuer-titel" style="color:#C8A951;">Stimmen</div>
+      </div>
+    </a>
+    <p class="tuer-text">
+      Der Raum der Stimmen.<br>
+      Hier erwachen innere Kräfte.
+    </p>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 LIVSVEI – Alle Rechte vorbehalten</p>
+  <p>
+    <a href="index.html">Startseite</a> |
+    <a href="tempel/impressum.html">Impressum & Kontakt</a> |
+    <a href="tempel/datenschutz.html">Datenschutz</a>
+  </p>
+</footer>
+
+<script>
+function checkPassword(event) {
+  event.preventDefault();
+  
+  const password = prompt("Passwort eingeben:");
+  
+  if (password === "GAST67#") {
+    window.location.href = "privat.html";
+  } else if (password !== null) {
+    alert("Zugang verweigert.");
+  }
+}
+</script>
+
+</body>
+</html>

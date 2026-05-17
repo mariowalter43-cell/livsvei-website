@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Ergebnis – Pfad des Weltenträgers</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #ffffff;
+      color: #222;
+      text-align: center;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #000;
+      padding: 1.5rem 2rem;
+      border-bottom: 2px solid #C8A951;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      color: #C8A951;
+      font-size: 1.6rem;
+      font-weight: 500;
+      margin: 0;
+      letter-spacing: 0.05em;
+    }
+
+    header .startlink {
+      color: #C8A951;
+      text-decoration: none;
+      font-size: 1rem;
+      border: 1px solid #C8A951;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      transition: 0.2s;
+    }
+
+    header .startlink:hover {
+      background: #C8A951;
+      color: #000;
+    }
+
+    #frageAnzeige {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      color: #000;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    #einleitung {
+      max-width: 700px;
+      margin: 2rem auto 1rem auto;
+      font-size: 1.2rem;
+      color: #444;
+      padding: 0 1rem;
+    }
+
+    .karten-container {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .karte-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 180px;
+    }
+
+    .karte {
+      width: 180px;
+      height: 260px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 8px;
+      border: 6px solid transparent;
+    }
+
+    .Licht {
+      border: 6px solid white;
+      box-shadow: 0 0 0 3px black;
+    }
+
+    .Schatten {
+      border: 6px solid black;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    }
+
+    .karten-name {
+      margin-top: 0.6rem;
+      font-size: 1rem;
+      font-weight: 500;
+      text-transform: capitalize;
+    }
+
+    #schluss {
+      max-width: 700px;
+      margin: 2.5rem auto;
+      font-size: 1.3rem;
+      padding: 0 1rem;
+      color: #000;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 1.5rem;
+      background: #000;
+      border-top: 2px solid #C8A951;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #C8A951;
+      text-decoration: none;
+      margin: 0 0.5rem;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .positionstitel {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: rgba(200, 169, 81, 0.85);
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Dein Weltenträger‑Impuls</h1>
+    <a href="../index.html" class="startlink">Startseite</a>
+  </header>
+
+  <div id="frageAnzeige"></div>
+  <div id="einleitung"></div>
+  <div class="karten-container" id="karten"></div>
+  <div id="schluss"></div>
+
+  <footer>
+    <a href="../index.html">Startseite</a> |
+    <a href="../tempel/impressum.html">Impressum & Kontakt</a> |
+    <a href="../tempel/datenschutz.html">Datenschutz</a>
+    <div style="margin-top: 0.5rem;">© 2026 LIVSVEI</div>
+  </footer>
+
+  <script>
+    // ------------------------------------------------------------
+    // Frage laden
+    // ------------------------------------------------------------
+    const frage = localStorage.getItem("ow_frage") || "Keine Frage ausgewählt";
+    document.getElementById("frageAnzeige").innerText = frage;
+
+    // ------------------------------------------------------------
+    // Einleitungs- und Schlusstexte für den Weltenträger
+    // ------------------------------------------------------------
+    const texteOW = {
+      "Wie ist die aktuelle Lage im Außen?": {
+        einleitung: [
+          "Manchmal zeigt sich die Welt klarer als unsere Gedanken. Diese Karten spiegeln, was im Außen gerade sichtbar wird.",
+          "Die äußere Lage formt einen Rahmen, in dem du dich bewegst. Diese Impulse zeigen dir, wie dieser Rahmen jetzt beschaffen ist.",
+          "Bevor ein Weg entsteht, zeigt sich die Umgebung. Diese Karten spiegeln, was die Welt dir im Moment unverfälscht zeigt."
+        ],
+        schluss: [
+          "Nimm diese Spiegelung als Orientierung, nicht als Urteil. Die Welt zeigt dir nur, was gerade sichtbar ist.",
+          "Der äußere Zustand ist kein Befehl, sondern ein Bild. Du entscheidest, wie du dich darin bewegst.",
+          "Was du hier siehst, ist eine Momentaufnahme. Sie hilft dir, klarer zu erkennen, wo du stehst."
+        ]
+      },
+
+      "Was sind die Chancen und Hindernisse?": {
+        einleitung: [
+          "Jede Bewegung im Außen trägt Licht und Schatten. Diese Karten zeigen dir, welche Öffnungen und welche Widerstände jetzt sichtbar werden.",
+          "Die Welt antwortet oft zweistimmig. Diese Impulse spiegeln dir, wo Möglichkeiten entstehen – und wo Grenzen wirken.",
+          "Chancen und Hindernisse sind zwei Seiten derselben Resonanz. Diese Karten zeigen dir, wie sich beides im Außen formt."
+        ],
+        schluss: [
+          "Chancen und Hindernisse sind Hinweise, keine Grenzen. Du bestimmst, wie du ihnen begegnest.",
+          "Diese Spiegelung zeigt dir nur die Kräfte im Außen – wie du sie nutzt, bleibt frei.",
+          "Öffnungen und Blockaden sind Bewegungen, keine Urteile. Du entscheidest, welche Resonanz du wählst."
+        ]
+      },
+
+      "Welcher nächste Schritt ist jetzt klug?": {
+        einleitung: [
+          "Manchmal zeigt die Welt eine Richtung, bevor wir sie erkennen. Diese Karten spiegeln, welche Bewegung im Außen jetzt sinnvoll erscheint.",
+          "Der nächste Schritt entsteht nicht aus Druck, sondern aus Klarheit. Diese Impulse zeigen dir, welche Richtung das Außen gerade unterstützt.",
+          "Die Welt gibt Hinweise, keine Befehle. Diese Karten spiegeln, welche Handlungsebene jetzt Resonanz findet."
+        ],
+        schluss: [
+          "Die Welt zeigt dir eine Richtung – aber du bestimmst den Schritt.",
+          "Nimm diese Hinweise als Möglichkeit, nicht als Vorgabe. Der Weg bleibt dein eigener.",
+          "Der kluge Schritt ist der, der sich stimmig anfühlt. Diese Karten spiegeln nur, was im Außen bereit ist."
+        ]
+      },
+
+      "Wohin führt die aktuelle Entwicklung?": {
+        einleitung: [
+          "Entwicklungen tragen ihre eigene Logik. Diese Karten spiegeln, wohin die äußere Bewegung sich im Moment ausrichtet.",
+          "Die Welt bewegt sich – und du mit ihr. Diese Impulse zeigen dir die Tendenz, die sich aus dem Jetzt ergibt.",
+          "Ohne Zukunft vorherzusagen, spiegeln diese Karten, welche Richtung die äußere Dynamik im Moment nimmt."
+        ],
+        schluss: [
+          "Diese Tendenz ist kein Schicksal. Sie zeigt nur, wohin die Bewegung im Moment weist.",
+          "Die Entwicklung ist ein Fluss, kein Plan. Du kannst jederzeit anders einlenken.",
+          "Nimm diese Richtung als Spiegel, nicht als Vorhersage. Der Weg bleibt offen."
+        ]
+      }
+    };
+
+    // ------------------------------------------------------------
+    // Bedeutungsdatenbank – äußere Aspekte (Licht = Öffnung, Schatten = Blockade)
+    // ------------------------------------------------------------
+    const kartenDaten = {
+      "Selbstfindung": { aeusseres: "Eine Situation klärt sich im Außen.", schatten: "Unklare Signale oder widersprüchliche Eindrücke." },
+      "Entscheidung": { aeusseres: "Eine äußere Wahlmöglichkeit zeigt sich.", schatten: "Blockierte Optionen oder fehlende Klarheit im Umfeld." },
+      "Religion": { aeusseres: "Ein äußeres System oder Rahmen wirkt stabilisierend.", schatten: "Dogmatische Strukturen engen ein." },
+      "Abgrund": { aeusseres: "Eine Situation fordert Aufmerksamkeit.", schatten: "Ein Risiko oder Konflikt baut sich auf." },
+      "Eigentum": { aeusseres: "Materielle oder organisatorische Stabilität entsteht.", schatten: "Äußere Abhängigkeiten oder Besitzdruck." },
+      "Frau": { aeusseres: "Empathische oder intuitive Einflüsse im Außen.", schatten: "Überforderung durch emotionale Erwartungen." },
+      "Jahreszeiten": { aeusseres: "Ein natürlicher äußerer Rhythmus wirkt unterstützend.", schatten: "Ungünstiges Timing oder Verzögerungen." },
+      "Pech": { aeusseres: "Unvorhergesehene äußere Ereignisse.", schatten: "Wiederkehrende Störungen oder kleine Rückschläge." },
+      "Schwur": { aeusseres: "Ein äußeres Versprechen oder eine Zusage wirkt stabil.", schatten: "Bindungen im Außen engen ein." },
+      "Unentschlossenheit": { aeusseres: "Das Umfeld wartet ab.", schatten: "Äußere Unsicherheit oder fehlende Positionierung." },
+      "Krafttier": { aeusseres: "Unterstützung oder Stärke von außen.", schatten: "Überdominante äußere Kräfte." },
+      "Angriff": { aeusseres: "Konfrontation im Außen klärt etwas.", schatten: "Konflikte oder Druck von außen." },
+      "Mann": { aeusseres: "Aktive äußere Unterstützung.", schatten: "Dominanz oder Kontrolle im Außen." },
+      "Politik-Diplomatie": { aeusseres: "Ausgleichende äußere Kräfte.", schatten: "Unehrliche oder taktische Einflüsse." },
+      "Gut-Boese": { aeusseres: "Klare äußere Positionen werden sichtbar.", schatten: "Polarisierung oder harte Urteile im Außen." },
+      "Opfer": { aeusseres: "Ein Thema im Außen wird sichtbar.", schatten: "Äußere Schuldzuweisungen oder Abhängigkeiten." },
+      "Geschenk": { aeusseres: "Eine Chance oder Unterstützung erscheint.", schatten: "Erwartungen oder Bedingungen im Außen." },
+      "Geburt": { aeusseres: "Etwas Neues entsteht im Umfeld.", schatten: "Unsicherheit über neue äußere Entwicklungen." },
+      "Kind": { aeusseres: "Unkomplizierte äußere Impulse.", schatten: "Unreife oder unklare äußere Einflüsse." },
+      "Wachstum": { aeusseres: "Positive äußere Entwicklung.", schatten: "Überforderung durch äußere Dynamik." },
+      "Ernaehrung-Schwund": { aeusseres: "Stärkung durch äußere Ressourcen.", schatten: "Mangel oder Erschöpfung im Umfeld." },
+      "Fremde": { aeusseres: "Neue äußere Möglichkeiten.", schatten: "Unsicherheit durch Unbekanntes." },
+      "Tag-Nacht": { aeusseres: "Ausgleichende äußere Kräfte.", schatten: "Unruhe oder wechselhafte äußere Bedingungen." },
+      "Arbeit": { aeusseres: "Struktur und Aktivität im Außen.", schatten: "Überlastung oder Druck von außen." },
+      "Verteidigung": { aeusseres: "Schutz oder Stabilität im Außen.", schatten: "Abgrenzung oder Widerstand im Umfeld." },
+      "Hass": { aeusseres: "Ein Konflikt wird sichtbar.", schatten: "Feindseligkeit oder Spannungen im Außen." },
+      "Krankheit": { aeusseres: "Ein Hinweis auf äußere Belastungen.", schatten: "Schwächende äußere Einflüsse." },
+      "Gesundheit": { aeusseres: "Stabile äußere Bedingungen.", schatten: "Übersehen von äußeren Warnsignalen." },
+      "Monat": { aeusseres: "Ein Prozess im Außen braucht Zeit.", schatten: "Verzögerungen oder Wartephasen." },
+      "Suche": { aeusseres: "Neue äußere Informationen erscheinen.", schatten: "Verwirrende äußere Signale." },
+      "Mutter-Natur-Gaia": { aeusseres: "Natürliche äußere Unterstützung.", schatten: "Entfremdung oder Unruhe im Umfeld." },
+      "Gestaltung-Kunst": { aeusseres: "Kreative äußere Impulse.", schatten: "Unklare oder chaotische äußere Einflüsse." },
+      "Reise": { aeusseres: "Bewegung oder Veränderung im Außen.", schatten: "Unruhe oder Fluchtimpulse im Umfeld." },
+      "Bindung": { aeusseres: "Stabile äußere Beziehungen.", schatten: "Einengende äußere Verbindungen." },
+      "Liebe": { aeusseres: "Wärme und Unterstützung im Außen.", schatten: "Abhängigkeit oder Erwartungsdruck." },
+      "Stillstand": { aeusseres: "Ruhe oder Stabilität im Außen.", schatten: "Blockaden oder Verzögerungen." },
+      "Trennung": { aeusseres: "Ein äußerer Wandel wird sichtbar.", schatten: "Verlust oder Distanz im Umfeld." },
+      "Magie": { aeusseres: "Unerwartete äußere Möglichkeiten.", schatten: "Täuschung oder Illusion im Außen." },
+      "Lebenszyklus": { aeusseres: "Natürliche äußere Entwicklung.", schatten: "Wiederkehrende Muster im Außen." },
+      "See": { aeusseres: "Tiefe äußere Ruhe.", schatten: "Trübung oder Unklarheit im Umfeld." },
+      "Einsamkeit": { aeusseres: "Rückzug im Außen schafft Raum.", schatten: "Isolation oder Distanz." },
+      "Neid": { aeusseres: "Vergleich im Außen wird sichtbar.", schatten: "Missgunst oder Konkurrenz." },
+      "Not": { aeusseres: "Ein äußeres Thema braucht Aufmerksamkeit.", schatten: "Druck oder Engpässe im Umfeld." },
+      "Versagen": { aeusseres: "Ein Lernmoment im Außen.", schatten: "Kritik oder Ablehnung im Umfeld." },
+      "Irrtum": { aeusseres: "Korrektur im Außen wird möglich.", schatten: "Missverständnisse oder Fehlwahrnehmungen." },
+      "Jagd": { aeusseres: "Zielgerichtete äußere Bewegung.", schatten: "Überhastete äußere Dynamik." },
+      "Veraenderung": { aeusseres: "Ein äußerer Wandel setzt ein.", schatten: "Widerstand oder Unsicherheit im Umfeld." },
+      "Glueck": { aeusseres: "Positive äußere Fügungen.", schatten: "Angst, äußere Chancen zu verpassen." },
+      "Kameradschaft-Freundschaft": { aeusseres: "Unterstützende äußere Beziehungen.", schatten: "Abhängigkeit oder Gruppendruck." },
+      "Familie": { aeusseres: "Stabile äußere Bindungen.", schatten: "Einengende familiäre Einflüsse." },
+      "Brief-Nachricht": { aeusseres: "Wichtige äußere Informationen.", schatten: "Unklare oder verwirrende Nachrichten." },
+      "Ziel": { aeusseres: "Eine äußere Richtung wird sichtbar.", schatten: "Unklare oder widersprüchliche äußere Ziele." }
+    };
+
+    // ------------------------------------------------------------
+    // 6 Karten ziehen – ohne Wiederholung
+    // ------------------------------------------------------------
+    function zieheKarten() {
+      const titelListe = Object.keys(kartenDaten);
+      const pool = [...titelListe];
+
+      // Fisher-Yates Shuffle
+      for (let i = pool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [pool[i], pool[j]] = [pool[j], pool[i]];
+      }
+
+      const gezogene = pool.slice(0, 6).map(titel => ({
+        titel,
+        licht: Math.random() < 0.5,
+        daten: kartenDaten[titel]
+      }));
+
+      return gezogene;
+    }
+
+    // ------------------------------------------------------------
+    // Positionstitel für jede Karte
+    // ------------------------------------------------------------
+    const positionstitel = [
+      "1. Ausgangslage",
+      "2. Widerstand",
+      "3. Treibende Kraft",
+      "4. Versteckte Gefahr",
+      "5. Wendepunkt",
+      "6. Ergebnis"
+    ];
+
+    // ------------------------------------------------------------
+    // Darstellung
+    // ------------------------------------------------------------
+    function render() {
+      const block = texteOW[frage];
+
+      if (block) {
+        const einl = block.einleitung[Math.floor(Math.random() * block.einleitung.length)];
+        document.getElementById("einleitung").innerText = einl;
+      }
+
+      const karten = zieheKarten();
+      const container = document.getElementById("karten");
+
+      karten.forEach((k, index) => {
+        const div = document.createElement("div");
+        div.className = "karte-wrapper";
+
+        const dateiname = `${k.titel}.png`;
+
+        div.innerHTML = `
+          <div class="positionstitel">${positionstitel[index]}</div>
+          <div class="karte ${k.licht ? "Licht" : "Schatten"}"
+               style="background-image:url('../../assets/bilder/livsvei-orakel/${dateiname}')"></div>
+          <div class="karten-name">${k.titel}</div>
+          <p style="max-width:180px;font-size:0.9rem;margin-top:0.5rem;">
+            ${k.licht ? k.daten.aeusseres : k.daten.schatten}
+          </p>
+        `;
+
+        container.appendChild(div);
+      });
+
+      if (block) {
+        const schl = block.schluss[Math.floor(Math.random() * block.schluss.length)];
+        document.getElementById("schluss").innerText = schl;
+      }
+    }
+
+    window.onload = render;
+  </script>
+
+</body>
+</html>
