@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Raum der Stille – Livsvei</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f4f2ef;
+      color: #222;
+      line-height: 1.8;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      height: 300px;
+      background-image: url("../assets/bilder/backgrounds/Stille.png");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 20px;
+      color: white;
+      font-size: 1.4rem;
+      letter-spacing: 1px;
+      text-shadow: 0 0 8px rgba(0,0,0,0.6);
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .satz {
+      font-size: 1.6rem;
+      color: #333;
+      max-width: 700px;
+      transition: opacity 1.5s ease;
+      opacity: 1;
+      line-height: 1.5;
+    }
+
+    #bildkachel {
+      width: 100%;
+      max-width: 700px;
+      height: 300px;
+      margin: 2rem auto 0;
+      background-size: cover;
+      background-position: center;
+      border-radius: 8px;
+      border: 2px solid #C8A951;
+      opacity: 0;
+      transition: opacity 2s ease;
+    }
+
+    footer {
+      background: #000;
+      padding: 2rem 0;
+      text-align: center;
+      color: #C8A951;
+      border-top: 2px solid #C8A951;
+      font-size: 0.95rem;
+    }
+
+    footer a {
+      color: #C8A951;
+      text-decoration: none;
+      margin: 0 0.5rem;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  Raum der Stille
+</header>
+
+<main>
+  <p class="satz" id="meditationstext"></p>
+
+  <div id="bildkachel"></div>
+</main>
+
+<footer>
+  <p>© 2026 LIVSVEI – Alle Rechte vorbehalten</p>
+  <p>
+    <a href="index.html">Startseite</a> |
+    <a href="impressum.html">Impressum</a> |
+    <a href="datenschutz.html">Datenschutz</a>
+  </p>
+</footer>
+
+<script>
+  /* TEXTE */
+  const texte = [
+    "Was bleibt, wenn keine Antwort gesucht wird?",
+    "Warum führen starke Wege nicht immer zum Ziel?",
+    "Was wäre, wenn das Ziel nur die Ausrede für den Weg war?",
+    "Jeder Moment der Ruhe ist ein Geschenk an dein inneres Gleichgewicht.",
+    "Stille ist kein Fehlen von Klang, sondern das Wiederfinden deiner Mitte.",
+    "Ein Gast sieht beim Eintreten mehr als der Wirt beim Bleiben.",
+    "Nebel verbirgt den Pfad, aber er löscht ihn nicht aus.",
+    "Ein Weg zeigt sich, wenn nichts von ihm verlangt wird.",
+    "Manche Wege beginnen dort, wo man nicht mehr sucht.",
+    "Ein Weg ist manchmal nicht anders als Bleiben im Dazwischen.",
+    "Nicht jeder Weg führt fort, manche führen tiefer in den Moment.",
+    "Man muss auch nicht alle Wege nehmen, sondern sich für einen entscheiden."
+  ];
+
+  const element = document.getElementById("meditationstext");
+  let index = 0;
+
+  function zeigeText() {
+    element.style.opacity = 0;
+
+    setTimeout(() => {
+      element.textContent = texte[index];
+      element.style.opacity = 1;
+      index = (index + 1) % texte.length;
+    }, 1500);
+  }
+
+  zeigeText();
+  setInterval(zeigeText, 25 * 60 * 1000);
+
+
+
+  /* ORAKELBILDER (Dateinamen aus deinem Screenshot) */
+  const orakelBilder = [
+    "Abgrund.png","Angriff.png","Arbeit.png","Bindung.png","Brief-Nachricht.png",
+    "Eigentum.png","Einsamkeit.png","Entscheidung.png","Ernährung-Schwund.png",
+    "Familie.png","Frau.png","Fremde.png","Geburt.png","Geschenk.png",
+    "Gestaltung-Kunst.png","Gesundheit.png","Glück.png","Gut-Boese.png",
+    "Hass.png","Irrtum.png","Jagd.png","Jahreszeiten.png",
+    "Kameradschaft-Freundschaft.png","Kind.png","Krafttier.png","Krankheit.png",
+    "Lebenszyklus.png","Liebe.png","Lösung und Schwur.png","Magie.png",
+    "Mann.png","Monat.png","Mutter-Natur-Gaia.png","Neid.png","Not.png",
+    "Opfer.png","Pech.png","Politik-Diplomatie.png","Reise.png","Religion.png",
+    "See.png","Selbstfindung.png","Stillstand.png","Suche.png","Tag-Nacht.png",
+    "Trennung.png","Unentschlossenheit.png","Veränderung.png","Versagen.png",
+    "Verteidigung.png","Wachstum.png","Ziel.png"
+  ];
+
+  /* RUNENBILDER */
+  const runenBilder = [
+    "ALGIZ.png","ANSUZ.png","BERKANO.png","DAGAZ.png","EHWAZ.png","EIHWAZ.png",
+    "FEHU.png","GEBO.png","HAGALAZ.png","INGWAZ.png","ISA.png","JERA.png",
+    "KENAZ.png","LAGUZ.png","MANNAZ.png","NAUTHIZ.png","OTHALA.png",
+    "PERTHRO.png","RAIDHO.png","SOWILO.png","THURISAZ.png","TIWAZ.png",
+    "URUZ.png","WUNJO.png"
+  ];
+
+  /* 2/3 ORAKEL – 1/3 RUNEN */
+  function zufallsBild() {
+    const chance = Math.random();
+
+    if (chance < 0.666) {
+      const name = orakelBilder[Math.floor(Math.random() * orakelBilder.length)];
+      return `../assets/bilder/livsvei-orakel/${name}`;
+    } else {
+      const name = runenBilder[Math.floor(Math.random() * runenBilder.length)];
+      return `../assets/bilder/nordrun-orakel/${name}`;
+    }
+  }
+
+  const bildElement = document.getElementById("bildkachel");
+
+  function zeigeBild() {
+    bildElement.style.opacity = 0;
+
+    setTimeout(() => {
+      bildElement.style.backgroundImage = `url('${zufallsBild()}')`;
+      bildElement.style.opacity = 1;
+    }, 1500);
+  }
+
+  zeigeBild();
+  setInterval(zeigeBild, 35 * 60 * 1000);
+</script>
+
+</body>
+</html>
